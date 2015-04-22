@@ -11,7 +11,13 @@
     header, nav, section, article, footer
     nav ul {margin:0; padding:0;}
     nav ul li {display:inline; margin:5px;}
+    input.username-search {width:70%}
   </style>
+  <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+  <script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-route.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/async/1.22/async.min.js"></script>
 </head>
 
 <body>
@@ -24,8 +30,8 @@
 
     <nav>
       <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/about">About</a></li>
+        <li><a href="/">Client App</a></li>
+        <li><a href="/docs">Docs</a></li>
       </ul>
     </nav>
 
