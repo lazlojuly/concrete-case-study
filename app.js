@@ -28,6 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 app.use("/", require("./site/router"));
+app.use("/github-proxy", require("./github-proxy/router"));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -4,4 +4,7 @@ config.express = {
   port: process.env.EXPRESS_PORT || 3002,
 };
 
-config.somethingElse = {};
+config.gitHubProxy = {
+  username:"apple"
+  ,password:"banana"
+};
