@@ -18,6 +18,13 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-route.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/async/1.22/async.min.js"></script>
+  <script src="javascripts/countUp.min.js"></script>
+  <script src="javascripts/angular-countUp/angular-countUp.js"></script>
+  <script src="javascripts/gitHubClient.js"></script>
+  <script src="javascripts/ng-infinite-scroll.min.js"></script>
+  <script src="javascripts/repoService.js"></script>
+  <script src="javascripts/repoListService.js"></script>
+  <script src="javascripts/repoStarsService.js"></script>
 </head>
 
 <body>
