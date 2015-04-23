@@ -10,7 +10,7 @@
         <!-- Usernames are valid -->
         <div ng-show="(usersForSearch.length && !invalidUsernames.length)"
           class="usernames-for-search">
-          <header>Submit form to search for the following usernames(s):</header>
+          <header class="lead">Submit form to search for the following usernames(s):</header>
           <ul class="usersname-list">
             <li ng-repeat="username in usersForSearch track by $index" class="search-username">[[username]]</li>
           </ul>
@@ -18,7 +18,7 @@
 
         <!-- One or more usernames are not valid -->
         <div ng-show="invalidUsernames.length" class="users-for-search">
-          <header>Invalid usernames(s):</header>
+          <header class="lead">Invalid usernames(s):</header>
           <ul class="users-for-search">
             <li ng-repeat="username in invalidUsernames track by $index">[[username]]</li>
           </ul>
@@ -27,13 +27,13 @@
       </div>
 
       <form class="github-username-form" novalidate>
-        <label for="username-search-field">Username:</label>
+        <label for="username-search-field" class="lead">Username:</label>
         <input type="text" class="username-search" maxlength="160" id="username-search-field"
                 ng-model="usernames" ng-class="{'invalid-input':invalidUsernames.length}"
                 ng-change="updateSearchInfo(usernames)"
                 placeholder="Type a username for repositories or two usernames (separated by commas) for user comparison..."
               />
-        <input type="submit" ng-click="performSearch()" value="Submit" />
+        <button ng-click="performSearch()" class="btn btn-lg btn-default">Submit</button>
       </form>
 
       <div infinite-scroll="repoList.nextPage()" infinite-scroll-distance="1"
