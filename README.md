@@ -50,7 +50,7 @@ A demo version is available online at: [github-client.lazlojuly.com](http://gith
 
 ## TODOS
 
-As a compact demo feature it lacks of the following important work:
+As a compact demo feature it lacks some of the following important work:
 
 * no tests were generated
 * frontend code needs to be separated (views, controllers etc.)
