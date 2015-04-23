@@ -17,6 +17,26 @@
     nav ul li {display:inline; margin:5px;}
     input.username-search {width:70%}
     .user-repositories {width:80%; margin:auto;}
+    .repo-list-txt {color:#265a88}
+    .star-fight-txt {color:#f0ad4e}
+    .invalid-txt {color:red}
+    .thumbnail.with-caption {
+      display: inline-block;
+      background: #f5f5f5;
+    }
+    .thumbnail.with-caption p {
+      margin: 0;
+      padding-top: 0.5em;
+    }
+    .thumbnail.with-caption small:before {
+      content: '\2014 \00A0';
+    }
+    .thumbnail.with-caption small {
+      width: 100%;
+      text-align: right;
+      display: inline-block;
+      color: #999;
+    }
   </style>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">

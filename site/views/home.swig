@@ -13,7 +13,7 @@
                 placeholder="Type 1 username for repos or 2 usernames (separated by commas) for star fight..."
               />
         <button ng-click="performSearch()" class="btn btn-primary btn-default">
-          <i class="fa fa-search fa-fw"></i>&nbsp;Submit
+          Submit
         </button>
       </form>
 
@@ -22,25 +22,26 @@
         <!-- Usernames are valid -->
         <div ng-show="(usersForSearch.length && !invalidUsernames.length)"
           class="usernames-for-search">
-          <header ng-show="(usersForSearch.length === 1)" class="lead ok-txt">
+          <header ng-show="(usersForSearch.length === 1)" class="lead repo-list-txt">
             Submit form to list the repositories of <kbd>[[(usersForSearch[0])]]</kbd>
           </header>
-          <header ng-show="(usersForSearch.length === 2)" class="lead ok-txt">
-            Submit form for star
-            fight between <kbd>[[(usersForSearch[0])]]</kbd> and <kbd>[[(usersForSearch[1])]]</kbd>
+          <header ng-show="(usersForSearch.length === 2)" class="lead star-fight-txt">
+            Submit form for star-fight between
+            <kbd>[[(usersForSearch[0])]]</kbd> and <kbd>[[(usersForSearch[1])]]</kbd>
           </header>
         </div>
 
         <!-- One or more usernames are not valid -->
-        <div ng-show="invalidUsernames.length" class="users-for-search">
+        <div ng-show="invalidUsernames.length" class="users-for-search invalid-txt" >
           <header class="lead">Invalid usernames(s):</header>
-          <ul class="users-for-search">
+          <ul class="users-for-search list-unstyled list-inline">
             <li ng-repeat="username in invalidUsernames track by $index">[[username]]</li>
           </ul>
         </div>
 
       </div>
 
+      <i ng-show="repoList.busy" class="fa fa-spinner fa-lg fa-pulse"></i>
       <div infinite-scroll="repoList.nextPage()" infinite-scroll-distance="1"
         ng-show="repoList.repos.length" class="user-repositories"
         ng-class="{'loading':repoList.busy}">
@@ -51,7 +52,8 @@
               <a target="_blank" href="[[repo.html_url]]">
                 [[repo.name]] (*[[repo.stargazers_count]])
               </a>
-              <i class="fa fa-clock-o fa-fw"></i><span class="small">&nbsp;[[repo.updated_at | date:'medium']]</span>
+              <i class="fa fa-clock-o fa-fw"></i>
+              <span class="small">&nbsp;[[repo.updated_at | date:'medium']]</span>
             </span>
             <p class="repo-desc">[[repo.description]]</p>
             <p class="repo-last-update">
@@ -60,22 +62,23 @@
         </ul>
       </div>
 
+      <i ng-show="repoStars.busy" class="fa fa-spinner fa-lg fa-pulse"></i>
       <div ng-show="repoStars.owners.length" class="user-comparison"
         ng-class="{'loading':repoStars.busy}">
         <ul class="owner-list list-inline">
           <li ng-repeat="owner in repoStars.owners" class="owner-info">
-            <img ng-src="[[owner.avatar_url]]" alt="avatar" width="50"/>
-            <span class="owner-github-profile">
+            <div class="thumbnail with-caption">
+              <img ng-src="[[owner.avatar_url]]" alt="avatar" width="100"/>
               <a target="_blank" href="[[owner.html_url]]">[[owner.login]]</a>
-            </span>
-            <p class="total-stars-count">
-              <countup startval="0"
-                  endval="owner.totalRepoStars"
-                  duration="3"
-                  decimals="0"
-                  options="countup.options">
-              </countup> Stars
-            </p>
+              <h3 class="total-stars-count">
+                <countup startval="0"
+                    endval="owner.totalRepoStars"
+                    duration="3"
+                    decimals="0"
+                    options="countup.options">
+                </countup> Stars
+              </h3>
+            </div>
           </li>
         </ul>
       </div>
