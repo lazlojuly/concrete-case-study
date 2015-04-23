@@ -14,41 +14,48 @@ API to show the repositories belonging to a developer
 ```
 git clone https://github.com/lazlojuly/concrete-case-study.git
 cd concrete-case-study && npm install
+node bin/www
 ```
+
 
 ## Configuration
 
 This demo client requires a test GitHub account in order to make authenticated
-requests. This was added because only 60 anonymous calls allowed per hour.
+requests. This was added because requests using Basic Authentication or OAuth, 
+can make up to 5,000 requests per hour. For unauthenticated requests, the rate 
+limit allows only up to 60 requests per hour. 
+More informaiton here: [Rate Limiting in GitHub API](https://developer.github.com/v3/#rate-limiting)
 
 Open ```configs/main.js``` and add username and password of a test GitHub account.
 
 
 ## Demo Installation
 
-A demo version is available online at: http:github-client.lazlojuly.com
+A demo version is available online at: [github-client.lazlojuly.com](http://github-client.lazlojuly.com)
+
 
 
 ## Features
 
 * Intuitive user interface
 
-* Username validations
+* Username validation
 
 * List repositories by username
- * Infinite scroll when more than 20 repos
+ * Infinite scroll after more than 20 repos
 
 * Display user profile card with total star count
   * Star count is displayed with CountUp effect at comparison
 
+
 ## TODOS
 
-As a compact demo feature it lacks of important work:
+As a compact demo feature it lacks of the following important work:
 
 * no tests were generated
 * frontend code needs to be separated (views, controllers etc.)
 * error handling is incomplete
 * user feedback is also waiting to be added
-* authenticated proxy is not perfect and it does not proxy the original header back to client
+* authenticated proxy is not perfect, and it does not proxy the original header back to the client
 * only 1 GitHub API method is used at multiple places -
-where additional calls should be made to check whether the user can be found or not. 
+additional calls should be made; that is to check whether the user can be found or not. 
