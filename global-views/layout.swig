@@ -63,13 +63,14 @@
     <header>
       <h1>GitHub Client</h1>
     </header>
-
+    <!--
     <nav>
       <ul class="list-unstyled">
         <li><i class="fa fa-home fa-lg"></i>&nbsp;<a href="/">App</a></li>
         <li><i class="fa fa-book fa-lg"></i>&nbsp;<a href="/docs">Docs</a></li>
       </ul>
     </nav>
+    -->
 
   </section>
 

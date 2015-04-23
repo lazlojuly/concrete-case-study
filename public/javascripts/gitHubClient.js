@@ -34,6 +34,7 @@ gitHubClient.controller('UserFormController',
       // Clear repoList and chart
       $scope.repoList.setDefaults();
       $scope.repoStars.setDefaults();
+      $scope.noReposFound = false;
 
       if ($scope.invalidUsernames.length > 0 || $scope.usersForSearch.length === 0)
         return false;
@@ -43,12 +44,11 @@ gitHubClient.controller('UserFormController',
       {
         // repoList is handling response - only error needs to be caught here
         $scope.repoList.getUserRepos($scope.usersForSearch[0], function(err, repos) {
+          // Quick hack to make this work with the github-proxy
           if (err)
-          {
-            return $scope.feedBacks.push(
-              {type:"error",message:"Sorry, could not retrieve user repositories."}
-            );
-          }
+            return $scope.noReposFound = true;
+          if(!repos.length || (repos.hasOwnProperty("message") && repos.message === "Not Found"))
+            return $scope.noReposFound = true;
         });
       }
 

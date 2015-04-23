@@ -39,9 +39,14 @@
           </ul>
         </div>
 
+        <span ng-show="noReposFound" class="invalid-txt">
+          <i class="fa fa-exclamation-triangle fa-3x"></i>
+          <h4>Sorry, no repository was found.</h4>
+        </span>
+
       </div>
 
-      <i ng-show="repoList.busy" class="fa fa-spinner fa-lg fa-pulse"></i>
+      <i ng-show="repoList.busy" class="fa fa-refresh fa-spin fa-3x"></i>
       <div infinite-scroll="repoList.nextPage()" infinite-scroll-distance="1"
         ng-show="repoList.repos.length" class="user-repositories"
         ng-class="{'loading':repoList.busy}">
@@ -62,7 +67,7 @@
         </ul>
       </div>
 
-      <i ng-show="repoStars.busy" class="fa fa-spinner fa-lg fa-pulse"></i>
+      <i ng-show="repoStars.busy" class="fa fa-refresh fa-spin fa-3x"></i>
       <div ng-show="repoStars.owners.length" class="user-comparison"
         ng-class="{'loading':repoStars.busy}">
         <ul class="owner-list list-inline">
