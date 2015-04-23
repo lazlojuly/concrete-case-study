@@ -27,6 +27,7 @@ gitHubClient.controller('UserFormController',
         decimal : '.'
       }
     };
+    $("#username-search-field").focus();
 
 
     $scope.performSearch = function(){

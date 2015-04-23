@@ -5,15 +5,30 @@
 
     <section ng-controller="UserFormController as userFormCtrl">
 
+      <form class="github-username-form" novalidate>
+        <label for="username-search-field" class="lead">Username(s):</label>
+        <input type="text" class="username-search" maxlength="160" id="username-search-field"
+                ng-model="usernames" ng-class="{'invalid-input':invalidUsernames.length}"
+                ng-change="updateSearchInfo(usernames)" autocomplete="off"
+                placeholder="Type 1 username for repos or 2 usernames (separated by commas) for star fight..."
+              />
+        <button ng-click="performSearch()" class="btn btn-primary btn-default">
+          <i class="fa fa-search fa-fw"></i>&nbsp;Submit
+        </button>
+      </form>
+
       <div class="search-info">
 
         <!-- Usernames are valid -->
         <div ng-show="(usersForSearch.length && !invalidUsernames.length)"
           class="usernames-for-search">
-          <header class="lead">Submit form to search for the following usernames(s):</header>
-          <ul class="usersname-list">
-            <li ng-repeat="username in usersForSearch track by $index" class="search-username">[[username]]</li>
-          </ul>
+          <header ng-show="(usersForSearch.length === 1)" class="lead ok-txt">
+            Submit form to list the repositories of <kbd>[[(usersForSearch[0])]]</kbd>
+          </header>
+          <header ng-show="(usersForSearch.length === 2)" class="lead ok-txt">
+            Submit form for star
+            fight between <kbd>[[(usersForSearch[0])]]</kbd> and <kbd>[[(usersForSearch[1])]]</kbd>
+          </header>
         </div>
 
         <!-- One or more usernames are not valid -->
@@ -26,33 +41,28 @@
 
       </div>
 
-      <form class="github-username-form" novalidate>
-        <label for="username-search-field" class="lead">Username:</label>
-        <input type="text" class="username-search" maxlength="160" id="username-search-field"
-                ng-model="usernames" ng-class="{'invalid-input':invalidUsernames.length}"
-                ng-change="updateSearchInfo(usernames)"
-                placeholder="Type a username for repositories or two usernames (separated by commas) for user comparison..."
-              />
-        <button ng-click="performSearch()" class="btn btn-lg btn-default">Submit</button>
-      </form>
-
       <div infinite-scroll="repoList.nextPage()" infinite-scroll-distance="1"
         ng-show="repoList.repos.length" class="user-repositories"
         ng-class="{'loading':repoList.busy}">
-        <ul class="repo-list">
+        <ul class="repo-list list-unstyled">
           <li ng-repeat="repo in repoList.repos" class="repo-info">
             <span class="repo-list-name">
-              <a target="_blank" href="[[repo.html_url]]">[[repo.name]] (*[[repo.stargazers_count]])</a>
+              <i class="fa fa-check-square fa-lg"></i>&nbsp;
+              <a target="_blank" href="[[repo.html_url]]">
+                [[repo.name]] (*[[repo.stargazers_count]])
+              </a>
+              <i class="fa fa-clock-o fa-fw"></i><span class="small">&nbsp;[[repo.updated_at | date:'medium']]</span>
             </span>
             <p class="repo-desc">[[repo.description]]</p>
-            <p class="repo-last-update">Last updated: [[repo.updated_at | date:'medium']]</p>
+            <p class="repo-last-update">
+            </p>
           </li>
         </ul>
       </div>
 
       <div ng-show="repoStars.owners.length" class="user-comparison"
         ng-class="{'loading':repoStars.busy}">
-        <ul class="owner-list">
+        <ul class="owner-list list-inline">
           <li ng-repeat="owner in repoStars.owners" class="owner-info">
             <img ng-src="[[owner.avatar_url]]" alt="avatar" width="50"/>
             <span class="owner-github-profile">
