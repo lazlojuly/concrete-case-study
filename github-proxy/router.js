@@ -15,7 +15,7 @@ router.get('/users/:username/repos', function(req, res, next) {
   customHeader["Accept"] = "application/vnd.github.v3+json";
 
   var apiOptions = {
-  	hostname: "api.github.com"
+    hostname: config.gitHubProxy.host
     ,auth: config.gitHubProxy.username+":"+config.gitHubProxy.password
     ,path: req.url
   	// ,rejectUnauthorized: false
