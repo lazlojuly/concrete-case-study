@@ -1,8 +1,27 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+body {font-family: Verdana, sans-serif; font-size:0.8em;text-align:center;}
+.user-repositories {text-align:left;}
+header, nav, section, article, footer
+nav ul {margin:0; padding:0;}
+nav ul li {display:inline; margin:5px;}
+input.username-search {width:70%}
+.user-repositories {width:80%; margin:auto;}
+.repo-list-txt {color:#265a88}
+.star-fight-txt {color:#f0ad4e}
+.invalid-txt {color:red}
+.thumbnail.with-caption {
+  display: inline-block;
+  background: #f5f5f5;
 }
-
-a {
-  color: #00B7FF;
+.thumbnail.with-caption p {
+  margin: 0;
+  padding-top: 0.5em;
+}
+.thumbnail.with-caption small:before {
+  content: '\2014 \00A0';
+}
+.thumbnail.with-caption small {
+  width: 100%;
+  text-align: right;
+  display: inline-block;
+  color: #999;
 }

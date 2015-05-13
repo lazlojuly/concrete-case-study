@@ -1,0 +1,16 @@
+<div ng-controller="TerminalController">
+
+  <form class="github-username-form" novalidate>
+    <label for="username-search-field" class="lead">Username(s):</label>
+    <input type="text" class="username-search" maxlength="160" id="username-search-field"
+      ng-model="usernames" ng-class="{'invalid-input':invalidUsernames.length}"
+      ng-change="updateSearchInfo(usernames)" autocomplete="off"
+      placeholder="Type 1 username for repos or 2 usernames (separated by commas) for star fight..."
+    />
+    <button ng-click="performSearch()" class="btn btn-primary btn-default">
+      Submit
+    </button>
+  </form>
+
+  <div class="feedback" ng-include="'js/gh-client/terminal/feedback.html'"></div>
+</div>

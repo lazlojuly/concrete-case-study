@@ -1,12 +1,16 @@
-gitHubClient.factory('RepoListService', function($http, RepoService) {
+gitHubClient.service('RepoListService', function($http, RepoService) {
+
+  this.repos = [];
+  this.busy = false;
+  this.username = '';
+  // pagination
+  this.currentPage = 1;
+  this.perPage = 20;
+  this.sort = "updated";
+  this.lastItemCount = 0; // the repos.count of the latest page
 
 
-  var RepoListService = function() { this.setDefaults(); };
-  RepoListService.prototype = Object.create(RepoService.prototype);
-  RepoListService.prototype.constructor = RepoListService;
-
-
-  RepoListService.prototype.setDefaults = function() {
+  this.reset = function() {
     this.repos = [];
     this.busy = false;
     this.username = '';
@@ -18,7 +22,7 @@ gitHubClient.factory('RepoListService', function($http, RepoService) {
   };
 
 
-  RepoListService.prototype.getUserRepos = function(username, next) {
+  this.getUserRepos = function(username, next) {
 
     // Init call
     this.busy = true;
@@ -29,7 +33,7 @@ gitHubClient.factory('RepoListService', function($http, RepoService) {
       ,sort:this.sort
     };
 
-    this.getRepos(username, queryParams, function(err, data){
+    RepoService.getRepos(username, queryParams, function(err, data){
       this.busy = false;
       if (err) return next(err);
       this.repos = this.repos.concat(data);
@@ -40,7 +44,7 @@ gitHubClient.factory('RepoListService', function($http, RepoService) {
   };
 
 
-  RepoListService.prototype.nextPage = function() {
+  this.nextPage = function() {
 
     // Only paginate if we already have some results
     if (!this.repos.length) return;
@@ -59,5 +63,4 @@ gitHubClient.factory('RepoListService', function($http, RepoService) {
 
   };
 
-  return RepoListService;
 });

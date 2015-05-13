@@ -1,9 +1,9 @@
 // Base class for RepoListService, RepoStarsService etc.
 gitHubClient.factory('RepoService', function($http) {
 
-  var RepoService = function() {};
+  var RepoService = {};
 
-  RepoService.prototype.getRepos = function(username, queryParams, next) {
+  RepoService.getRepos = function(username, queryParams, next) {
 
     var request = {
       method:"GET"

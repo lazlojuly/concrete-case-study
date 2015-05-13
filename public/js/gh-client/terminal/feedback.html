@@ -1,0 +1,28 @@
+<div class="feedbacks">
+  [[feedBacks]] TODO-GENERAL-FEEDBACK
+</div>
+
+<!-- Usernames are valid -->
+<div ng-show="(parsedInput.usersForSearch.length && !parsedInput.invalidUsernames.length)"
+  class="usernames-for-search">
+  <header ng-show="(parsedInput.usersForSearch.length === 1)" class="lead repo-list-txt">
+    Submit form to list the repositories of <kbd>[[(parsedInput.usersForSearch[0])]]</kbd>
+  </header>
+  <header ng-show="(parsedInput.usersForSearch.length === 2)" class="lead star-fight-txt">
+    Submit form for star-fight between
+    <kbd>[[(parsedInput.usersForSearch[0])]]</kbd> and <kbd>[[(parsedInput.usersForSearch[1])]]</kbd>
+  </header>
+</div>
+
+<!-- One or more usernames are not valid -->
+<div ng-show="parsedInput.invalidUsernames.length" class="users-for-search invalid-txt" >
+  <header class="lead">Invalid usernames(s):</header>
+  <ul class="users-for-search list-unstyled list-inline">
+    <li ng-repeat="username in parsedInput.invalidUsernames track by $index">[[username]]</li>
+  </ul>
+</div>
+
+<span ng-show="noReposFound" class="invalid-txt">
+  <i class="fa fa-exclamation-triangle fa-3x"></i>
+  <h4>Sorry, no repository was found.</h4>
+</span>
