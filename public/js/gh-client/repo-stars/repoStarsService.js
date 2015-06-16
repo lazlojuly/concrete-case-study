@@ -1,18 +1,15 @@
-gitHubClient.factory('RepoStarsService', function($http, RepoService) {
+gitHubClient.service('RepoStarsService', function($http, RepoService) {
 
+  this.owners = [];
+  this.busy = false;
 
-  var RepoStarsService = function() { this.setDefaults(); };
-  RepoStarsService.prototype = Object.create(RepoService.prototype);
-  RepoStarsService.prototype.constructor = RepoStarsService;
-
-
-  RepoStarsService.prototype.setDefaults = function() {
+  this.reset = function() {
     this.owners = [];
     this.busy = false;
   };
 
 
-  RepoStarsService.prototype.countStars = function(repos) {
+  this.countStars = function(repos) {
     var count = 0;
     for (var x=0; x<repos.length; x++)
       count += repos[x].stargazers_count;
@@ -20,7 +17,7 @@ gitHubClient.factory('RepoStarsService', function($http, RepoService) {
   };
 
 
-  RepoStarsService.prototype.compareUserRepos = function(usernames, next) {
+  this.compareUserRepos = function(usernames, next) {
     this.busy = true;
 
     var queryParams = {
@@ -31,8 +28,8 @@ gitHubClient.factory('RepoStarsService', function($http, RepoService) {
     // Only two user-repos are compared for now
     var service = this;
     async.parallel([
-      this.getRepos.bind(service, usernames[0], queryParams)
-      ,this.getRepos.bind(service, usernames[1], queryParams)
+      RepoService.getRepos.bind(service, usernames[0], queryParams)
+      ,RepoService.getRepos.bind(service, usernames[1], queryParams)
     ],
     // Callback on the multiple calls
     function(err, results) {
@@ -46,7 +43,7 @@ gitHubClient.factory('RepoStarsService', function($http, RepoService) {
         {
           // Get first repo for owner information
           var ownerInfo = results[i][0].owner;
-          ownerInfo.totalRepoStars = RepoStarsService.prototype.countStars(results[i]);
+          ownerInfo.totalRepoStars = service.countStars(results[i]);
           // Save owner to array
           service.owners.push(ownerInfo);
         }
@@ -55,6 +52,4 @@ gitHubClient.factory('RepoStarsService', function($http, RepoService) {
 
   };
 
-
-  return RepoStarsService;
 });

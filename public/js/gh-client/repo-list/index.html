@@ -1,0 +1,20 @@
+<i ng-show="repoList.busy" class="fa fa-refresh fa-spin fa-3x"></i>
+<div infinite-scroll="repoList.nextPage()" infinite-scroll-distance="1"
+  ng-show="repoList.repos.length" class="user-repositories"
+  ng-class="{'loading':repoList.busy}">
+  <ul class="repo-list list-unstyled">
+    <li ng-repeat="repo in repoList.repos" class="repo-info">
+      <span class="repo-list-name">
+        <i class="fa fa-check-square fa-lg"></i>&nbsp;
+        <a target="_blank" href="[[repo.html_url]]">
+          [[repo.name]] (*[[repo.stargazers_count]])
+        </a>
+        <i class="fa fa-clock-o fa-fw"></i>
+        <span class="small">&nbsp;[[repo.updated_at | date:'medium']]</span>
+      </span>
+      <p class="repo-desc">[[repo.description]]</p>
+      <p class="repo-last-update">
+      </p>
+    </li>
+  </ul>
+</div>

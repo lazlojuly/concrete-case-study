@@ -1,0 +1,20 @@
+<i ng-show="repoStars.busy" class="fa fa-refresh fa-spin fa-3x"></i>
+<div ng-show="repoStars.owners.length" class="user-comparison"
+  ng-class="{'loading':repoStars.busy}">
+  <ul class="owner-list list-inline">
+    <li ng-repeat="owner in repoStars.owners" class="owner-info">
+      <div class="thumbnail with-caption">
+        <img ng-src="[[owner.avatar_url]]" alt="avatar" width="100"/>
+        <a target="_blank" href="[[owner.html_url]]">[[owner.login]]</a>
+        <h3 class="total-stars-count">
+          <countup startval="0"
+              endval="owner.totalRepoStars"
+              duration="3"
+              decimals="0"
+              options="countup.options">
+          </countup> Stars
+        </h3>
+      </div>
+    </li>
+  </ul>
+</div>

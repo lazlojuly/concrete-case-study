@@ -9,69 +9,39 @@
   <![endif]-->
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body {font-family: Verdana, sans-serif; font-size:0.8em;text-align:center;}
-    .user-repositories {text-align:left;}
-    header, nav, section, article, footer
-    nav ul {margin:0; padding:0;}
-    nav ul li {display:inline; margin:5px;}
-    input.username-search {width:70%}
-    .user-repositories {width:80%; margin:auto;}
-    .repo-list-txt {color:#265a88}
-    .star-fight-txt {color:#f0ad4e}
-    .invalid-txt {color:red}
-    .thumbnail.with-caption {
-      display: inline-block;
-      background: #f5f5f5;
-    }
-    .thumbnail.with-caption p {
-      margin: 0;
-      padding-top: 0.5em;
-    }
-    .thumbnail.with-caption small:before {
-      content: '\2014 \00A0';
-    }
-    .thumbnail.with-caption small {
-      width: 100%;
-      text-align: right;
-      display: inline-block;
-      color: #999;
-    }
-  </style>
+  <!-- App styles -->
+  <link rel="stylesheet" href="stylesheets/style.css">
+  <!-- Lib styles -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <!-- CDN libs -->
   <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
   <script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-route.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/async/1.22/async.min.js"></script>
-  <script src="javascripts/countUp.min.js"></script>
-  <script src="javascripts/angular-countUp/angular-countUp.js"></script>
-  <script src="javascripts/gitHubClient.js"></script>
-  <script src="javascripts/ng-infinite-scroll.min.js"></script>
-  <script src="javascripts/repoService.js"></script>
-  <script src="javascripts/repoListService.js"></script>
-  <script src="javascripts/repoStarsService.js"></script>
+  <!-- Downloaded libs -->
+  <script src="js/vendors/countUp.min.js"></script>
+  <script src="js/vendors/angular-countUp/angular-countUp.js"></script>
+  <script src="js/vendors/ng-infinite-scroll.min.js"></script>
+  <!-- App -->
+  <script src="js/gh-client/gitHubClient.js"></script>
+  <script src="js/gh-client/common/services/repoService.js"></script>
+  <script src="js/gh-client/common/services/validationService.js"></script>
+  <script src="js/gh-client/common/controllers/mainController.js"></script>
+  <script src="js/gh-client/terminal/terminalController.js"></script>
+  <script src="js/gh-client/repo-list/repoListService.js"></script>
+  <script src="js/gh-client/repo-stars/repoStarsService.js"></script>
 </head>
 
 <body>
 
   <section>
-
     <header>
       <h1>GitHub Client</h1>
     </header>
-    <!--
-    <nav>
-      <ul class="list-unstyled">
-        <li><i class="fa fa-home fa-lg"></i>&nbsp;<a href="/">App</a></li>
-        <li><i class="fa fa-book fa-lg"></i>&nbsp;<a href="/docs">Docs</a></li>
-      </ul>
-    </nav>
-    -->
-
   </section>
 
   {% block body %}
