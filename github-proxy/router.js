@@ -36,7 +36,7 @@ router.get('/users/:username/repos', function(req, res, next) {
       res.end();
     });
 
-	});
+  });
 
   apiRequest.on('error', function(error) {
     console.log(error);
